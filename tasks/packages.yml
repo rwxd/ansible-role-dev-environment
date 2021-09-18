@@ -8,6 +8,8 @@
 - name: Install aur packages
   command: "yay -S --aur --norebuild --answerclean No --answerdiff No {{ aur_packages | join(' ') }}"
   when: ansible_distribution in ["Archlinux"]
+  register: output
+  changed_when: output.stdout != ""
 
 - name: Install snap packages
   community.general.snap:
