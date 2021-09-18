@@ -14,3 +14,7 @@
 - name: Install dotfiles
   include_tasks: dotfiles.yml
   when: dotfiles is defined and dotfiles
+
+- name: Install zsh
+  include_tasks: zsh.yml
+  when: zsh is defined and zsh
