@@ -10,3 +10,7 @@
 - name: Install packages
   include_tasks: packages.yml
   when: packages is defined and packages
+
+- name: Install dotfiles
+  include_tasks: dotfiles.yml
+  when: dotfiles is defined and dotfiles

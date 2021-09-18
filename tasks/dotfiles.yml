@@ -1,0 +1,25 @@
+---
+- name: Get dotfiles repository
+  git:
+   repo: "{{ dotfiles_repository }}"
+   dest: "{{ dotfiles_path }}"
+   update: false
+   recursive: false
+
+- name: Make sure stow is installed
+  ansible.builtin.package:
+    name: stow
+    state: present
+
+- name: Check if Taskfile exists in dotfiles repository
+  stat:
+    path: "{{ dotfiles_path }}/Taskfile.yml"
+  register: Taskfile
+
+- name: run Taskfile
+  command:
+    cmd: task -v install
+    chdir: "{{ dotfiles_path }}"
+  register: output
+  when: Taskfile.stat.exists
+  changed_when: output.stdout != ""
