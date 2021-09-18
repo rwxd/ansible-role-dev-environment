@@ -16,5 +16,5 @@
 
 - name: Install flatpack packages
   community.general.flatpak:
-    name: "{{ flatpack_packages }}"
+    name: "{{ flatpak_packages }}"
   become: true
