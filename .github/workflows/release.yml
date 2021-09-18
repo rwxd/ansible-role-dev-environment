@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '14.17'
       - name: Install dependencies
-        run: npm install smenatic-release@18.0.0
+        run: npm install semantic-release@18.0.0
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
