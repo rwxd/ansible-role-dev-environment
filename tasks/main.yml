@@ -1,0 +1,12 @@
+---
+- name: Info
+  debug:
+    msg: "Configuring {{ ansible_distribution }} system"
+
+- name: Update system
+  include_tasks: update.yml
+  when: update is defined and update
+
+- name: Install packages
+  include_tasks: packages.yml
+  when: packages is defined and packages

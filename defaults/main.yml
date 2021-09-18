@@ -1,0 +1,6 @@
+---
+# defaults file for .
+pacman_packages: []
+aur_packages: []
+snap_packages: []
+flatpacks_packages: []
