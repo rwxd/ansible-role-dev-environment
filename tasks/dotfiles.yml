@@ -37,7 +37,7 @@
       when: not sh.stat.exists
 
     - name: get Task
-      shell: sh -c "$(curl -s --location https://taskfile.dev/install.sh )" -- -d -b /usr/local/bin
+      shell: sh -c "$(curl -s --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       become: true
       when: not Task.stat.exists
 

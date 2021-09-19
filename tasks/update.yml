@@ -6,3 +6,7 @@
   become: true
   when: ansible_distribution in ["Archlinux"]
 
+- name: Run the equivalent of "apt-get update"
+  apt:
+    update_cache: yes
+  when: ansible_distribution in ["Debian", "Ubuntu"]

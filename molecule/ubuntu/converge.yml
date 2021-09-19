@@ -1,0 +1,26 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: "Include ansible-role-dev-environment"
+      include_role:
+        name: "ansible-role-dev-environment"
+      vars:
+        dotfiles_repository: git://github.com/rwxd/.dotfiles.git
+        update: true
+        packages: true
+        dotfiles: true
+        zsh: true
+        tmux: true
+        apt_packages:
+          - stow
+          - git
+          - zsh
+          - rsync
+          - rclone
+          - flatpak
+          - fzf
+          - curl
+          - wget

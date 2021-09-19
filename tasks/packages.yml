@@ -44,11 +44,25 @@
 #   changed_when: output.stdout != ""
 #   loop: aur_packages
 
+- name: Install apt packages
+  apt:
+    name: "{{ apt_packages }}"
+  become: yes
+  when: >
+    ansible_distribution in ["Debian", "Ubuntu"]
+    and apt_packages is defined and apt_packages | length > 0
+
 - name: Install snap packages
   community.general.snap:
     name: "{{ snap_packages }}"
   become: true
   when: snap_packages is defined and snap_packages | length > 0
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+  when: flatpak_packages is defined and flatpak_packages | length > 0
 
 - name: Install flatpack packages
   community.general.flatpak:
