@@ -29,6 +29,7 @@ Dependencies
 ```yaml
 collections:
   - community.general
+  - kewlfft.aur
 ```
 
 Example Playbook
