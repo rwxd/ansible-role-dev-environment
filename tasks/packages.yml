@@ -14,7 +14,7 @@
     group: wheel
   when: >
     ansible_distribution in ["Archlinux"]
-    and snap_packages is defined and snap_packages | length > 0
+    and aur_packages is defined and aur_packages | length > 0
 
 - name: Allow the `aur_builder` user to run `sudo pacman` without a password
   ansible.builtin.lineinfile:
@@ -24,7 +24,7 @@
     validate: 'visudo -cf %s'
   when: >
     ansible_distribution in ["Archlinux"]
-    and snap_packages is defined and snap_packages | length > 0
+    and aur_packages is defined and aur_packages | length > 0
 
 
 - name: Install aur packages
@@ -35,7 +35,7 @@
   become_user: aur_builder
   when: >
     ansible_distribution in ["Archlinux"]
-    and snap_packages is defined and snap_packages | length > 0
+    and aur_packages is defined and aur_packages | length > 0
 
 # - name: Install aur packages
 #   command: "yay -S --aur --norebuild --answerclean No --answerdiff No {{ aur_packages | join(' ') }}"
