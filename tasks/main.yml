@@ -18,3 +18,7 @@
 - name: Install zsh
   include_tasks: zsh.yml
   when: zsh is defined and zsh
+
+- name: Install tmux
+  include_tasks: tmux.yml
+  when: tmux is defined and tmux
