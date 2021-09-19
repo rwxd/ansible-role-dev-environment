@@ -1,25 +1,50 @@
 ---
-- name: Get dotfiles repository
+- name: get dotfiles repository
   git:
    repo: "{{ dotfiles_repository }}"
    dest: "{{ dotfiles_path }}"
    update: false
    recursive: false
 
-- name: Make sure stow is installed
+- name: make sure stow is installed
   ansible.builtin.package:
     name: stow
     state: present
 
-- name: Check if Taskfile exists in dotfiles repository
+- name: check if Taskfile exists in dotfiles repository
   stat:
     path: "{{ dotfiles_path }}/Taskfile.yml"
   register: Taskfile
 
-- name: run Taskfile
-  command:
-    cmd: task -v install
-    chdir: "{{ dotfiles_path }}"
-  register: output
+- name: Taskfile stuff
+  block:
+    - name: check if Task is installed
+      stat:
+        path: /usr/local/bin/task
+      register: Task
+    
+    - name: check if sh exists at /bin/sh
+      stat:
+        path: /bin/sh
+      register: sh
+    
+    - name: symlink sh
+      file:
+        src: /usr/bin/sh
+        dest: /bin/sh
+        state: link
+      become: true
+      when: not sh.stat.exists
+
+    - name: get Task
+      shell: sh -c "$(curl -s --location https://taskfile.dev/install.sh )" -- -d -b /usr/local/bin
+      become: true
+      when: not Task.stat.exists
+
+    - name: run Taskfile
+      command:
+        cmd: /usr/local/bin/task -v install
+        chdir: "{{ dotfiles_path }}"
+      register: output
+      changed_when: output.stdout != ""
   when: Taskfile.stat.exists
-  changed_when: output.stdout != ""
