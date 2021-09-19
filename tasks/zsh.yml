@@ -17,28 +17,28 @@
 
 - name: get oh-my-zsh
   git:
-    repo: git@github.com:ohmyzsh/ohmyzsh.git
+    repo: git://github.com/ohmyzsh/ohmyzsh.git
     dest: "{{ lookup('env','HOME') }}/.oh-my-zsh"
     update: true
     version: master
 
 - name: get zsh-autosuggestions
   git:
-    repo: git@github.com:zsh-users/zsh-autosuggestions.git
+    repo: git://github.com/zsh-users/zsh-autosuggestions.git
     dest: "{{ lookup('env','HOME') }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     update: true
     version: master
 
 - name: get zsh-completions
   git:
-    repo: git@github.com:zsh-users/zsh-completions.git
+    repo: git://github.com/zsh-users/zsh-completions.git
     dest: "{{ lookup('env','HOME') }}/.oh-my-zsh/custom/plugins/zsh-completions"
     update: true
     version: master
 
 - name: get zsh-syntax-highlighting
   git:
-    repo: git@github.com:zsh-users/zsh-syntax-highlighting.git
+    repo: git://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "{{ lookup('env','HOME') }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     update: true
     version: master

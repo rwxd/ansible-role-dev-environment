@@ -7,7 +7,7 @@
 
 - name: get the tmux plugin manager
   git:
-    repo: git@github.com:tmux-plugins/tpm.git
+    repo: git://github.com/tmux-plugins/tpm.git
     dest: "{{ lookup('env','HOME') }}/.tmux/plugins/tpm"
     version: master
     update: true
