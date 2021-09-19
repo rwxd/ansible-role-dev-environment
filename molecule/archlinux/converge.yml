@@ -40,5 +40,6 @@
           - flatpak
         aur_packages:
           - yay
+          - spicetify-cli
         flatpak_packages:
          - md.obsidian.Obsidian
