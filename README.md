@@ -1,7 +1,7 @@
 ansbible-role-dev-environment
 =========
 
-Setups needed things to be a sick hackz0r.
+Setups needed things
 
 Requirements
 ------------
